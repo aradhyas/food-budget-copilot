@@ -47,6 +47,7 @@ class BudgetCreate(BaseModel):
     user_id: int
     month: int = Field(ge=1, le=12)
     year: int
+    category: str = "food"  # 'food' | 'grocery'
     amount: Decimal = Field(gt=0)
     currency: str = "INR"
 
@@ -69,3 +70,12 @@ class BudgetStatus(BaseModel):
     projected_monthly_spend: Decimal
     projected_over_budget_amount: Decimal
     is_likely_to_exceed: bool
+
+
+class SplitBudgetStatus(BaseModel):
+    food_budget: Decimal
+    food_spent: Decimal
+    grocery_budget: Decimal
+    grocery_spent: Decimal
+    total_budget: Decimal
+    total_spent: Decimal
